@@ -1,16 +1,14 @@
 <template>
   <div>
+    <x-header :left-options="{showBack: false}">{{ title }}</x-header>
     <app-header>{{ $data }}</app-header>
-    <tab :line-width="2" :index.sync="index">
-      <tab-item v-for="item in taglist" :selected="tag === item" :key="item" @click="tag = item">{{ item }}</tab-item>
-    </tab>
     <router-view :key="key"/>
     <app-footer :index.sync="footerIndex" @on-index-change="onFooterIndexChange"/>
   </div>
 </template>
 
 <script>
-import { Tab, TabItem } from 'vux'
+import { XHeader, Tab, TabItem } from 'vux'
 import { incrementag } from '../vuex/actions'
 import AppHeader from './Header'
 import AppFooter from './Footer'
@@ -19,6 +17,7 @@ import Quality from './Quality'
 
 export default {
   components: {
+    XHeader,
     AppHeader,
     AppFooter,
     Tab,
@@ -31,26 +30,21 @@ export default {
       tag: '资讯',
       taglist: ['资讯', '博客', '问答', '活动'],
       footerIndex: 0,
-      subPage: ''
     }
   },
   computed: {
     key() {
       return this.$route.fullPath
+    },
+    title() {
+      return ['产品信息', '产地信息', '种植信息', '质检报告'][this.footerIndex]
     }
   },
   watch: {
     footerIndex(newIndex) {
-      let page = ''
-      if (newIndex === 0) {
-        page = '/goods'
-      } else {
-        page = '/quality'
-      }
-
+      const page = ['/goods', '/origin', '/plant', '/quality'][newIndex]
       console.log('subPage is:', newIndex, page)
       this.$router.push(page)
-      this.subPage = page
     }
   },
   vuex: {

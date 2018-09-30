@@ -1,6 +1,6 @@
 <template>
   <div>
-    bbbbbbbbbbbbbbbbb
+    这里显示质量检测报告信息
   </div>
 
 </template>

@@ -4,6 +4,9 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Goods from '@/components/Goods'
 import Quality from '@/components/Quality'
+import Origin from '@/components/Origin'
+import Plant from '@/components/Plant'
+
 Vue.use(Router)
 
 export default new Router({
@@ -22,6 +25,16 @@ export default new Router({
           path: 'quality',
           name: 'quality',
           component: Quality
+        },
+        {
+          path: 'plant',
+          name: 'plant',
+          component: Plant
+        },
+        {
+          path: 'origin',
+          name: 'origin',
+          component: Origin
         }
       ]
     }

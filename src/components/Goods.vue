@@ -1,7 +1,6 @@
 <template>
   <div>
-    aaaaaaaaaaaaaa
-    <swiper :list="demo01_list" v-model="demo01_index" @on-index-change="onIndexChange"/>
+    <swiper :list="slideList" v-model="index" @on-index-change="onIndexChange"/>
   </div>
 
 </template>
@@ -30,7 +29,8 @@ export default {
   },
   data() {
     return {
-      demo01_list: baseList
+      slideList: baseList,
+      index: 0
     }
   },
   methods: {
