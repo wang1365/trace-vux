@@ -3,21 +3,23 @@
     <swiper :list="slideList" v-model="index" @on-index-change="onIndexChange"/>
     <br>
     <divider>黄瓜品种详情</divider>
-    <card :header="{title: $t('Product details') }" :footer="{title: $t('More'),link:'/component/panel'}">
-      <p slot="content" class="card-padding">aaaaa</p>
-      <p slot="content" class="card-padding">aaaaa</p>
-      <p slot="content" class="card-padding">aaaaa</p>
-      <p slot="content" class="card-padding">aaaaa</p>
+    <card :header="{title: '品种：' }" :footer="{title: '查看更多...',link:'/component/panel'}">
+      <span slot="content" class="card-padding">品名： 无刺黄瓜</span>
+      <p slot="content" class="card-padding">级别： 一级良种</p>
+      <p slot="content" class="card-padding">品种纯度： 100%</p>
+      <p slot="content" class="card-padding">品牌： 中科茂华</p>
+      <p slot="content" class="card-padding">产地/厂家： 河北茂华种业有限公司</p>
     </card>
 
     <br>
     <divider>{{ $t('Use header slot and content slot') }}</divider>
     <card>
       <img slot="header" src="http://placeholder.qiniudn.com/640x300" style="width:100%;display:block;">
-      <!--<div slot="content" class="card-padding">-->
-        <!--<p style="color:#999;font-size:12px;">Posted on January 21, 2015</p>-->
-        <!--<p style="font-size:14px;line-height:1.2;">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit..</p>-->
-      <!--</div>-->
+      <div slot="content" class="card-padding">
+        <p style="color:#999;font-size:12px;">Posted on January 21, 2015</p>
+        <p style="font-size:14px;line-height:1.2;">Quisque eget vestibulum nulla. Quisque quis dui quis ex ultricies efficitur vitae non felis. Phasellus quis nibh hendrerit..</p>
+        <br><br>
+      </div>
     </card>
   </div>
 
@@ -58,3 +60,25 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+  @import '~vux/src/styles/1px.less';
+
+  .card-demo-flex {
+    display: flex;
+  }
+  .card-demo-content01 {
+    padding: 10px 0;
+  }
+  .card-padding {
+    padding: 15px;
+  }
+  .card-demo-flex > div {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+  }
+  .card-demo-flex span {
+    color: #f74c31;
+  }
+</style>
