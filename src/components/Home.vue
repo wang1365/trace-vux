@@ -29,7 +29,7 @@ export default {
     return {
       tag: '资讯',
       taglist: ['资讯', '博客', '问答', '活动'],
-      footerIndex: 0,
+      footerIndex: 0
     }
   },
   computed: {
