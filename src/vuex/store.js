@@ -10,7 +10,8 @@ Vue.use(Vuex)
 // 创建一个对象来保存应用启动时的初始状态
 const state = {
   // 应用启动时
-  tag: '综合'
+  tag: '综合',
+  id: 0
 }
 
 // 创建一个对象存储一系列我们接下来要写的 mutation 函数
@@ -18,8 +19,11 @@ const mutations = {
   // TODO: 放置我们的状态变更函数
   // mutation 的第一个参数是当前的 state
   // 你可以在函数里修改 state
-  INCREMENT (state, newtag) {
+  INCREMENT(state, newtag) {
     state.tag = newtag
+  },
+  SET_ID(state, newId) {
+    state.id = newId
   }
 }
 
@@ -27,5 +31,10 @@ const mutations = {
 // 至此，这个 store 就可以连接到我们的应用中
 export default new Vuex.Store({
   state,
-  mutations
+  mutations,
+  actions: {
+    setId({ commit, id }) {
+      commit('SET_ID', id)
+    }
+  }
 })

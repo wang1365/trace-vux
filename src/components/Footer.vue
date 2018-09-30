@@ -1,5 +1,5 @@
 <template>
-  <tabbar @on-index-change="onIndexChange">
+  <tabbar ref="bar" @on-index-change="onIndexChange">
     <tabbar-item selected>
       <img slot="icon-active" src="../assets/image/ic_nav_news_actived.png">
       <img slot="icon" src="../assets/image/ic_nav_news_normal.png">
@@ -24,9 +24,12 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem } from 'vux'
+import { Tabbar, TabbarItem, TransferDom } from 'vux'
 export default{
   name: 'AppFooter',
+  directives: {
+    TransferDom
+  },
   components: {
     Tabbar,
     TabbarItem
@@ -38,6 +41,8 @@ export default{
     return {
       msg: ''
     }
+  },
+  mounted() {
   },
   methods: {
     onIndexChange(index) {
@@ -53,4 +58,7 @@ export default{
     height:40px;
     width:40px;
   }
+   .weui-tabbar {
+     position: fixed !important;
+   }
 </style>

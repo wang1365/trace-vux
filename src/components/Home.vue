@@ -8,8 +8,9 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import { XHeader, Tab, TabItem } from 'vux'
-import { incrementag } from '../vuex/actions'
+// import { setId, incrementag } from '../vuex/actions'
 import AppHeader from './Header'
 import AppFooter from './Footer'
 import Goods from './Goods'
@@ -47,14 +48,16 @@ export default {
       this.$router.push(page)
     }
   },
-  vuex: {
-    actions: {
-      increment: incrementag
-    }
-  },
   ready() {
   },
+  mounted() {
+    console.log('set id to state:', this.$route.query.id)
+    this.setId(this.$route.query.id)
+  },
   methods: {
+    ...mapActions([
+      'setId'
+    ]),
     onFooterIndexChange(e) {
       console.log('########')
       console.log(e)

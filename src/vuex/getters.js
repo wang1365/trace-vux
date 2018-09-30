@@ -4,3 +4,7 @@
 export function getTag(state) {
   return state.tag
 }
+
+export function getId(state) {
+  return state.id
+}
