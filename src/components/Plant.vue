@@ -1,6 +1,9 @@
 <template>
   <div>
-    这里显示种植信息
+    为什么寿光蔬菜这么好呢？
+    <video style="height: 100%;width: 100%" controls>
+      <source src="http://ips.ifeng.com/video19.ifeng.com/video09/2018/04/19/25603882-102-9987625-025625.mp4">
+    </video>
   </div>
 
 </template>
