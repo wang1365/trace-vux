@@ -4,7 +4,6 @@ import Vue from 'vue'
 import FastClick from 'fastclick'
 import App from './App'
 import router from './router/index.js'
-// import Home from './components/HelloFromVux'
 
 import { TabItem } from 'vux'
 import { Swiper } from 'vux'
