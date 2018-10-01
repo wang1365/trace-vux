@@ -13,31 +13,30 @@ export default new Router({
   routes: [
     {
       path: '',
-      redirect: 'goods',
+      redirect: 'goods/0',
       component: Home,
       children: [
         {
-          path: 'goods',
+          path: 'goods/:id',
           name: 'goods',
           component: Goods
         },
         {
-          path: 'quality',
+          path: 'quality/:id',
           name: 'quality',
           component: Quality
         },
         {
-          path: 'plant',
+          path: 'plant/:id',
           name: 'plant',
           component: Plant
         },
         {
-          path: 'origin',
+          path: 'origin/:id',
           name: 'origin',
           component: Origin
         }
       ]
     }
-
   ]
 })

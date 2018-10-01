@@ -12,10 +12,12 @@ import { Scroller } from 'vux'
 import { Cell } from 'vux'
 import { Group } from 'vux'
 import { Tabbar, TabbarItem } from 'vux'
-
+import { AlertPlugin } from 'vux'
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false
+
+Vue.use(AlertPlugin)
 Vue.component({
   TabItem,
   Swiper,

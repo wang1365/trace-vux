@@ -10,6 +10,11 @@
       <img slot="icon-active" src="../assets/image/ic_nav_tweet_actived.png">
       <span slot="label">产地</span>
     </tabbar-item>
+    <tabbar-item @on-item-click="onClickQuery">
+      <x-icon slot="icon" type="ios-search" size="30"/>
+      <x-icon slot="icon-active" type="ios-search-strong" size="30"/>
+      <span slot="label">查询</span>
+    </tabbar-item>
     <tabbar-item>
       <img slot="icon" src="../assets/image/ic_nav_discover_normal.png">
       <img slot="icon-active" src="../assets/image/ic_nav_discover_actived.png">
@@ -48,6 +53,9 @@ export default{
     onIndexChange(index) {
       console.log('Tab bar changes:', index)
       this.$emit('update:index', index)
+    },
+    onClickQuery() {
+      this.$emit('show-query')
     }
   }
 }
