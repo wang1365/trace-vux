@@ -30,14 +30,23 @@ export default {
     ready() {
       const map = new BMap.Map('tracemap')
       this.map = map
-      const point = new BMap.Point(132.1569, 43.87192)
+      const point = new BMap.Point(118.717328, 36.917346)
       map.setCurrentCity('潍坊')
-      map.centerAndZoom(point, 10)
+      map.centerAndZoom(point, 14)
       map.addControl(new BMap.MapTypeControl())
       map.enableScrollWheelZoom(true)
       map.enableDoubleClickZoom(true)
       const marker = new BMap.Marker(point)
       map.addOverlay(marker)
+
+      var label = new BMap.Label('产地：山东省寿光市文家街道桑家村', { 'offset': new BMap.Size(-10, -20) })
+      marker.setLabel(label)
+      map.addOverlay(marker)
+      label.setStyle({
+        borderColor: '#808080',
+        color: '#333',
+        cursor: 'pointer'
+      })
     }
 
   }
