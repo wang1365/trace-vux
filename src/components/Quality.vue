@@ -10,23 +10,23 @@
 </template>
 
 <script>
-import { XImg,Divider } from 'vux'
+import { XImg, Divider } from 'vux'
 
 export default {
   name: 'Quality',
   components: {
-    XImg,Divider
+    XImg, Divider
   },
   data() {
     return {
       list: [
-        'https://o5omsejde.qnssl.com/demo/test1.jpg',
-        'https://o5omsejde.qnssl.com/demo/test2.jpg',
-        'https://o5omsejde.qnssl.com/demo/test4.jpg',
-        'https://o5omsejde.qnssl.com/demo/test5.jpg',
-        'https://o5omsejde.qnssl.com/demo/test6.jpg',
-        'https://o5omsejde.qnssl.com/demo/test7.jpg',
-        'https://o5omsejde.qnssl.com/demo/test8.jpg'
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=4233979331,3794889946&fm=26&gp=0.jpg',
+        'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3536908889,3761973065&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=652773625,138100026&fm=26&gp=0.jpg',
+        'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=556062581,3715064647&fm=26&gp=0.jpg',
+        'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3325982607,813720956&fm=26&gp=0.jpg',
+        'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=2766866106,3032753104&fm=26&gp=0.jpg',
+        'https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4236848956,429813555&fm=26&gp=0.jpg'
       ]
     }
   },
