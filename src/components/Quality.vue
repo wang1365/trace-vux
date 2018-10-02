@@ -1,5 +1,6 @@
 <template>
   <div>
+    <divider>相关照片</divider>
     <div v-for="src in list" :key="src" style="background-color:yellow;text-align:center;">
       <span style="font-size:20px;">Loading</span>
       <x-img :src="src" :webp-src="`${src}?type=webp`" :offset="-100" class="ximg-demo" error-class="ximg-error" container="#vux_view_box_body" @on-success="success" @on-error="error"/>
@@ -9,12 +10,12 @@
 </template>
 
 <script>
-import { XImg } from 'vux'
+import { XImg,Divider } from 'vux'
 
 export default {
   name: 'Quality',
   components: {
-    XImg
+    XImg,Divider
   },
   data() {
     return {
