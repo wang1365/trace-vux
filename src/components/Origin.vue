@@ -56,7 +56,8 @@ export default {
 <style scoped  lang="less">
   /*@import '~vux/src/styles/1px.less';*/
   #tracemap {
-    height: 250px;
+    height: 100% - 20px;
     width: 100%;
+    position: absolute;
   }
 </style>
