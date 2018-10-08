@@ -4,13 +4,12 @@
     <br>
     <divider>黄瓜品种详情</divider>
     <card :header="{title: '品种：' }" :footer="{title: '查看更多...',link:'/component/panel'}">
-      <span slot="content" class="card-padding">品名： 无刺黄瓜</span>
-      <div slot="content" class="card-item"><span class="text-item">品名：</span><span>无刺黄瓜</span> </div>
-      <div slot="content" class="card-item"><span class="text-item">品种纯度：</span><span>100%</span> </div>
-      <p slot="content" class="card-padding">级别： 一级良种</p>
-      <p slot="content" class="card-padding">品种纯度： 100%</p>
-      <p slot="content" class="card-padding">品牌： 中科茂华</p>
-      <p slot="content" class="card-padding">产地/厂家： 河北茂华种业有限公司</p>
+      <div slot="content" class="card-padding"><span>品    名：</span><span class="text-item">无刺黄瓜</span> </div>
+      <div slot="content" class="card-padding"><span>品种纯度：</span><span class="text-item">100%</span> </div>
+      <div slot="content" class="card-padding"><span>级    别：</span><span class="text-item">一级良种</span> </div>
+      <div slot="content" class="card-padding"><span>品    牌：</span><span class="text-item">中科茂华</span> </div>
+      <div slot="content" class="card-padding"><span>厂    家：</span><span class="text-item">河北茂华种业有限公司</span> </div>
+      <div slot="content" class="card-padding"><span>品种纯度：</span><span class="text-item">100%</span> </div>
     </card>
 
     <br>
@@ -87,8 +86,6 @@ export default {
 
   .text-item {
     text-align: right;
-    width: 200px;
-    display: block;
   }
   .card-demo-flex {
     display: flex;
