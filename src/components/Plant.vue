@@ -10,14 +10,16 @@
     </video>
     <br>
     <divider>订单ID: {{ traceInfo.orderId }}</divider>
-    <template v-for="item in traceInfo.plantItemDTOList">
-      <card :header="{title: '种植条目' }" :key="item.id">
+    <template v-for="(item, index) in traceInfo.plantItemDTOList">
+      <card :header="{title: '种植条目'+(index+1) }" :key="item.id">
         <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item">{{ item.farmerName }}</span></div>
         <div slot="content" class="card-padding"><span>操作：</span><span class="text-item">{{ item.actionName }}</span></div>
         <div slot="content" class="card-padding"><span>时间：</span><span class="text-item">{{ item.actionDate | formatDate }}</span></div>
         <div slot="content" class="card-padding"><span>描述：</span><span class="text-item">{{ item.actionContent }}</span></div>
       </card>
     </template>
+    <br>
+    <br>
   </div>
 
 </template>
@@ -49,7 +51,7 @@ export default {
   .text-item {
     text-align: right;
     width: 200px;
-    color: blue;
+    color: darkgreen;
   }
   .card-demo-flex {
     display: flex;
