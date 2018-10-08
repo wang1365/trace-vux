@@ -13,6 +13,13 @@ import { Cell } from 'vux'
 import { Group } from 'vux'
 import { Tabbar, TabbarItem } from 'vux'
 import { AlertPlugin } from 'vux'
+
+import * as filters from './filters/index'
+
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
 FastClick.attach(document.body)
 
 Vue.config.productionTip = false

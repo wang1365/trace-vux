@@ -8,17 +8,27 @@
     <video style="height: 100%;width: 100%" controls poster="http://img0.imgtn.bdimg.com/it/u=2264166786,3696145444&fm=26&gp=0.jpg">
       <source src="http://ips.ifeng.com/video19.ifeng.com/video09/2018/09/23/v47391907-102-009-064951.mp4">
     </video>
+    <br>
+    <divider>订单ID: {{ traceInfo.orderId }}</divider>
+    <template v-for="item in traceInfo.plantItemDTOList">
+      <card :header="{title: '种植条目' }" :key="item.id">
+        <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item">{{ item.farmerName }}</span></div>
+        <div slot="content" class="card-padding"><span>操作：</span><span class="text-item">{{ item.actionName }}</span></div>
+        <div slot="content" class="card-padding"><span>时间：</span><span class="text-item">{{ item.actionDate | formatDate }}</span></div>
+        <div slot="content" class="card-padding"><span>描述：</span><span class="text-item">{{ item.actionContent }}</span></div>
+      </card>
+    </template>
   </div>
 
 </template>
 
 <script>
-import { Swiper, Divider } from 'vux'
+import { Swiper, Divider, Card } from 'vux'
 
 export default {
   name: 'Plant',
   components: {
-    Swiper, Divider
+    Swiper, Divider, Card
   },
   props: {
     traceInfo: {
@@ -32,3 +42,30 @@ export default {
   }
 }
 </script>
+
+<style scoped lang="less">
+  @import '~vux/src/styles/1px.less';
+
+  .text-item {
+    text-align: right;
+    width: 200px;
+    color: blue;
+  }
+  .card-demo-flex {
+    display: flex;
+  }
+  .card-demo-content01 {
+    padding: 10px 0;
+  }
+  .card-padding {
+    padding: 15px;
+  }
+  .card-demo-flex > div {
+    flex: 1;
+    text-align: center;
+    font-size: 12px;
+  }
+  .card-demo-flex span {
+    color: #f74c31;
+  }
+</style>
