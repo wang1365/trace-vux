@@ -9,15 +9,17 @@
       <source src="http://ips.ifeng.com/video19.ifeng.com/video09/2018/09/23/v47391907-102-009-064951.mp4">
     </video>
     <br>
-    <divider>订单ID: {{ traceInfo.orderId }}</divider>
-    <template v-for="(item, index) in traceInfo.plantItemDTOList">
-      <card :header="{title: '种植条目'+(index+1) }" :key="item.id">
-        <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item">{{ item.farmerName }}</span></div>
-        <div slot="content" class="card-padding"><span>操作：</span><span class="text-item">{{ item.actionName }}</span></div>
-        <div slot="content" class="card-padding"><span>时间：</span><span class="text-item">{{ item.actionDate | formatDate }}</span></div>
-        <div slot="content" class="card-padding"><span>描述：</span><span class="text-item">{{ item.actionContent }}</span></div>
-      </card>
-    </template>
+    <divider v-if="traceInfo">订单ID: {{ traceInfo.orderId }}</divider>
+    <div v-if="traceInfo">
+      <template v-for="(item, index) in traceInfo.plantItemDTOList" >
+        <card :header="{title: '种植条目'+(index+1) }" :key="item.id">
+          <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item">{{ item.farmerName }}</span></div>
+          <div slot="content" class="card-padding"><span>操作：</span><span class="text-item">{{ item.actionName }}</span></div>
+          <div slot="content" class="card-padding"><span>时间：</span><span class="text-item">{{ item.actionDate | formatDate }}</span></div>
+          <div slot="content" class="card-padding"><span>描述：</span><span class="text-item">{{ item.actionContent }}</span></div>
+        </card>
+      </template>
+    </div>
     <br>
     <br>
   </div>
