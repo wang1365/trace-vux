@@ -20,6 +20,12 @@ export default {
   components: {
     Swiper, Divider
   },
+  props: {
+    traceInfo: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
     }

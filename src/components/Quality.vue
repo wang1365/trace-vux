@@ -17,6 +17,12 @@ export default {
   components: {
     XImg, Divider
   },
+  props: {
+    traceInfo: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
       list: [

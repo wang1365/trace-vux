@@ -2,7 +2,7 @@
   <div>
     <x-header :left-options="{showBack: false}">{{ title }}</x-header>
     <app-header>{{ $data }}</app-header>
-    <router-view :key="key"/>
+    <router-view :key="key" :trace-info="traceInfo"/>
     <app-footer :index.sync="footerIndex" @on-index-change="onFooterIndexChange" @show-query="onClickQuery"/>
     <alert v-model="showPop" title="友情提示" > 查询不到生产批次:{{ id }} 对应的溯源信息！</alert>
     <div v-transfer-dom>
@@ -84,7 +84,7 @@ export default {
     const orderId = this.$route.params.id
     console.log('set id to state:', orderId)
     getTraceInfoByOrder(orderId).then(res => {
-      this.traceinfo = res.data.data
+      this.traceInfo = res.data.data
     }).catch(err => {
       console.log('Get trace info failed:', err)
     })

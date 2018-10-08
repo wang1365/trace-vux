@@ -18,6 +18,12 @@ export default {
     Divider,
     BMap
   },
+  props: {
+    traceInfo: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
       map: null

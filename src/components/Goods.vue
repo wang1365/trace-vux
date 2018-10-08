@@ -23,6 +23,16 @@
         <br><br>
       </div>
     </card>
+
+    <br>
+    <divider>订单</divider>
+    <card>
+      <div slot="content" class="card-padding">
+        <p style="color:#999;font-size:12px;">{{ traceInfo.orderId }}</p>
+        <p style="font-size:14px;line-height:1.2;">生产地： 山东省寿光市文家街道桑家村</p>
+        <br><br>
+      </div>
+    </card>
   </div>
 
 </template>
@@ -49,11 +59,20 @@ export default {
   components: {
     Swiper, Divider, Card
   },
+  props: {
+    traceInfo: {
+      type: Object,
+      default: null
+    }
+  },
   data() {
     return {
       slideList: baseList,
       index: 0
     }
+  },
+  mounted() {
+    console.log('check trace info:', this.traceInfo)
   },
   methods: {
     onIndexChange(e) {
