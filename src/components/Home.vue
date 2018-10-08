@@ -27,6 +27,7 @@ import AppHeader from './Header'
 import AppFooter from './Footer'
 import Goods from './Goods'
 import Quality from './Quality'
+import { getTraceInfoByOrder } from '@/api/traceInfo'
 
 export default {
   directives: {
@@ -47,7 +48,8 @@ export default {
     return {
       footerIndex: 0,
       showPop: false,
-      showIdInput: false
+      showIdInput: false,
+      traceInfo: null
     }
   },
   computed: {
@@ -79,8 +81,15 @@ export default {
   ready() {
   },
   mounted() {
-    console.log('set id to state:', this.$route.query.id)
-    this.setId(this.$route.query.id)
+    const orderId = this.$route.params.id
+    console.log('set id to state:', orderId)
+    getTraceInfoByOrder(orderId).then(res => {
+      this.traceinfo = res.data.data
+    }).catch(err => {
+      console.log('Get trace info failed:', err)
+    })
+
+    this.setId(orderId)
   },
   methods: {
     ...mapActions([
