@@ -11,7 +11,7 @@
     <br>
     <divider v-if="traceInfo">订单ID: {{ traceInfo.orderId }}</divider>
     <div v-if="traceInfo">
-      <card :header="{title: '年度种植计划' }">
+      <card v-if="traceInfo.plantDTO" :header="{title: '年度种植计划' }">
         <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item1">{{ traceInfo.plantDTO.farmerName }}</span></div>
         <div slot="content" class="card-padding"><span>地点：</span><span class="text-item1">{{ traceInfo.plantDTO.address }}</span></div>
         <div slot="content" class="card-padding"><span>时间：</span><span class="text-item1">{{ traceInfo.plantDTO.startDate | formatDate }}</span></div>
