@@ -11,8 +11,8 @@
       <span slot="label">产地</span>
     </tabbar-item>
     <tabbar-item @on-item-click="onClickQuery">
-      <x-icon slot="icon" type="ios-search" size="30"/>
-      <x-icon slot="icon-active" type="ios-search-strong" size="30"/>
+      <img slot="icon" src="../assets/image/ic_nav_search_normal.png">
+      <img slot="icon-active" src="../assets/image/ic_nav_search_actived.png">
       <span slot="label">查询</span>
     </tabbar-item>
     <tabbar-item>
