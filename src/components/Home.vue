@@ -76,20 +76,15 @@ export default {
         console.log('subPage is:', newIndex, page)
         this.$router.push(page)
       }
+    },
+    '$route'(to, from) {
+      this.updateTraceInfo()
     }
   },
   ready() {
   },
   mounted() {
-    const orderId = this.$route.params.id
-    console.log('set id to state:', orderId)
-    getTraceInfoByOrder(orderId).then(res => {
-      this.traceInfo = res.data.data
-    }).catch(err => {
-      console.log('Get trace info failed:', err)
-    })
-
-    this.setId(orderId)
+    this.updateTraceInfo()
   },
   methods: {
     ...mapActions([
@@ -113,6 +108,15 @@ export default {
     onClickQuery() {
       console.log('home onClickQuery', this.showIdInput)
       this.showIdInput = true
+    },
+    updateTraceInfo() {
+      const orderId = this.$route.params.id
+      console.log('updateTraceInfo for order:', orderId)
+      getTraceInfoByOrder(orderId).then(res => {
+        this.traceInfo = res.data.data
+      }).catch(err => {
+        console.log('Get trace info failed:', err)
+      })
     }
   }
 }

@@ -11,6 +11,12 @@
     <br>
     <divider v-if="traceInfo">订单ID: {{ traceInfo.orderId }}</divider>
     <div v-if="traceInfo">
+      <card :header="{title: '年度种植计划' }">
+        <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item1">{{ traceInfo.plantDTO.farmerName }}</span></div>
+        <div slot="content" class="card-padding"><span>地点：</span><span class="text-item1">{{ traceInfo.plantDTO.address }}</span></div>
+        <div slot="content" class="card-padding"><span>时间：</span><span class="text-item1">{{ traceInfo.plantDTO.startDate | formatDate }}</span></div>
+        <div slot="content" class="card-padding"><span>品种：</span><span class="text-item1">{{ traceInfo.plantDTO.goodsName }}</span></div>
+      </card>
       <template v-for="(item, index) in traceInfo.plantItemDTOList" >
         <card :header="{title: '种植条目'+(index+1) }" :key="item.id">
           <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item">{{ item.farmerName }}</span></div>
@@ -22,6 +28,7 @@
     </div>
     <br>
     <br>
+    <divider>---</divider>
   </div>
 
 </template>
@@ -52,8 +59,12 @@ export default {
 
   .text-item {
     text-align: right;
-    width: 200px;
     color: darkgreen;
+  }
+
+  .text-item1 {
+    text-align: right;
+    color: green;
   }
   .card-demo-flex {
     display: flex;
@@ -62,7 +73,7 @@ export default {
     padding: 10px 0;
   }
   .card-padding {
-    padding: 15px;
+    padding: 10px;
   }
   .card-demo-flex > div {
     flex: 1;
