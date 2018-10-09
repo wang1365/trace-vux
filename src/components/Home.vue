@@ -1,7 +1,7 @@
 <template>
   <div>
     <x-header :left-options="{showBack: false}">{{ title }}</x-header>
-    <app-header>{{ $data }}</app-header>
+    <!-- <app-header>{{ $data }}</app-header> -->
     <router-view :key="key" :trace-info="traceInfo"/>
     <app-footer :index.sync="footerIndex" @on-index-change="onFooterIndexChange" @show-query="onClickQuery"/>
     <alert v-model="showPop" title="友情提示" > 查询不到生产批次:{{ id }} 对应的溯源信息！</alert>
@@ -23,7 +23,7 @@
 import { mapActions } from 'vuex'
 import { XHeader, Tab, TabItem, Alert, Confirm, TransferDomDirective as TransferDom } from 'vux'
 // import { setId, incrementag } from '../vuex/actions'
-import AppHeader from './Header'
+// import AppHeader from './Header'
 import AppFooter from './Footer'
 import Goods from './Goods'
 import Quality from './Quality'
@@ -37,7 +37,7 @@ export default {
     XHeader,
     Alert,
     Confirm,
-    AppHeader,
+    // AppHeader,
     AppFooter,
     Tab,
     TabItem,
