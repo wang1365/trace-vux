@@ -40,16 +40,13 @@
 import { Swiper, Divider, Card } from 'vux'
 const baseList = [{
   url: 'javascript:',
-  img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vvsr72j20p00gogo2.jpg',
-  title: '高荣军'
+  img: 'http://img0.imgtn.bdimg.com/it/u=1432350417,449077377&fm=26&gp=0.jpg',
 }, {
   url: 'javascript:',
-  img: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw1k2wj20p00goq7n.jpg',
-  title: '王晓川'
+  img: 'http://img0.imgtn.bdimg.com/it/u=2913072137,2479013543&fm=26&gp=0.jpg',
 }, {
   url: 'javascript:',
-  img: 'https://static.vux.li/demo/5.jpg', // 404
-  title: '王晓森',
+  img: 'http://img2.imgtn.bdimg.com/it/u=869723110,4275175310&fm=26&gp=0.jpg', // 404
   fallbackImg: 'https://ww1.sinaimg.cn/large/663d3650gy1fq66vw50iwj20ff0aaaci.jpg'
 }]
 
