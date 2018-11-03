@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <divider>商品产地：山东省寿光市文家街道桑家村</divider>
+    <divider>{{ title }}</divider>
     <!--<TraceMap :height="height" :longitude="longitude" :latitude="latitude"/>-->
     <div id="tracemap" ref="allmap"/>
   </div>
@@ -29,6 +29,11 @@ export default {
       map: null
     }
   },
+  computed: {
+    title() {
+      return '商品产地：' + (this.traceInfo ? this.traceInfo.tenant.name : '寿光蔬菜高科技示范园')
+    }
+  },
   mounted() {
     // this.ready()
     this.$nextTick(this.ready())
@@ -37,7 +42,11 @@ export default {
     ready() {
       const map = new BMap.Map('tracemap')
       this.map = map
-      const point = new BMap.Point(118.717328, 36.917346)
+      const lon = this.traceInfo ? this.traceInfo.tenant.lon : 118.826487
+      const lat = this.traceInfo ? this.traceInfo.tenant.lat : 36.865415
+      const tenantName = this.traceInfo ? this.traceInfo.tenant.name : '寿光蔬菜高科技示范园'
+
+      const point = new BMap.Point(lon, lat)
       map.setCurrentCity('潍坊')
       map.centerAndZoom(point, 14)
       map.addControl(new BMap.MapTypeControl())
@@ -46,7 +55,7 @@ export default {
       const marker = new BMap.Marker(point)
       map.addOverlay(marker)
 
-      var label = new BMap.Label('产地：山东省寿光市文家街道桑家村', { 'offset': new BMap.Size(-30, -20) })
+      var label = new BMap.Label(`产地: ${tenantName}`, { 'offset': new BMap.Size(-30, -20) })
       marker.setLabel(label)
       map.addOverlay(marker)
       label.setStyle({
