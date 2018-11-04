@@ -1,37 +1,25 @@
 <template>
   <div>
     <swiper :list="slideList" v-model="index" @on-index-change="onIndexChange"/>
-    <br>
-    <divider>黄瓜品种详情</divider>
-    <card :header="{title: '品种：' }" :footer="{title: '查看更多...',link:'/component/panel'}">
-      <div slot="content" class="card-padding"><span>品    名：</span><span class="text-item">无刺黄瓜</span> </div>
-      <div slot="content" class="card-padding"><span>品种纯度：</span><span class="text-item">100%</span> </div>
-      <div slot="content" class="card-padding"><span>级    别：</span><span class="text-item">一级良种</span> </div>
-      <div slot="content" class="card-padding"><span>品    牌：</span><span class="text-item">中科茂华</span> </div>
-      <div slot="content" class="card-padding"><span>厂    家：</span><span class="text-item">河北茂华种业有限公司</span> </div>
-      <div slot="content" class="card-padding"><span>品种纯度：</span><span class="text-item">100%</span> </div>
-    </card>
 
-    <br>
-    <divider>生产详情</divider>
-    <card>
-      <img slot="header" src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1221213920,2160606380&fm=26&gp=0.jpg" style="width:100%;display:block;">
-      <div slot="content" class="card-padding">
-        <p style="color:#999;font-size:12px;">采摘于 2018年9月26日</p>
-        <p style="font-size:14px;line-height:1.2;">生产地： 山东省寿光市文家街道桑家村</p>
-        <br><br>
-      </div>
-    </card>
 
+    <div v-if="traceInfo">
+      <card v-if="traceInfo.plantDTO" :header="{title: '您所购买产品的溯源信息' }">
+        <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item1">{{ traceInfo.plantDTO.farmerName }}</span></div>
+        <div slot="content" class="card-padding"><span>地点：</span><span class="text-item1">{{ traceInfo.plantDTO.address }}</span></div>
+        <div slot="content" class="card-padding"><span>时间：</span><span class="text-item1">{{ traceInfo.plantDTO.startDate | formatDate }}</span></div>
+        <div slot="content" class="card-padding"><span>品种：</span><span class="text-item1">{{ traceInfo.plantDTO.goodsName }}</span></div>
+      </card>
+      <template v-for="(item, index) in traceInfo.plantItemDTOList" >
+        <card :header="{title: '种植条目'+(index+1) }" :key="item.id">
+          <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item">{{ item.farmerName }}</span></div>
+          <div slot="content" class="card-padding"><span>操作：</span><span class="text-item">{{ item.actionName }}</span></div>
+          <div slot="content" class="card-padding"><span>时间：</span><span class="text-item">{{ item.actionDate | formatDate }}</span></div>
+          <div slot="content" class="card-padding"><span>描述：</span><span class="text-item">{{ item.actionContent }}</span></div>
+        </card>
+      </template>
+    </div>
     <br>
-    <divider>订单</divider>
-    <card v-if="traceInfo">
-      <div slot="content" class="card-padding">
-        <p style="color:#999;font-size:12px;">{{ traceInfo.orderId }}</p>
-        <p style="font-size:14px;line-height:1.2;">生产地： 山东省寿光市文家街道桑家村</p>
-        <br><br>
-      </div>
-    </card>
   </div>
 
 </template>
