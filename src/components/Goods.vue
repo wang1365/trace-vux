@@ -19,6 +19,8 @@
         </card>
       </template>
     </div>
+    <divider>---</divider>
+    <br>
     <br>
   </div>
 
