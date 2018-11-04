@@ -2,13 +2,13 @@
   <div>
     <swiper :list="slideList" v-model="index" @on-index-change="onIndexChange"/>
 
-
     <div v-if="traceInfo">
       <card v-if="traceInfo.plantDTO" :header="{title: '您所购买产品的溯源信息' }">
         <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item1">{{ traceInfo.plantDTO.farmerName }}</span></div>
         <div slot="content" class="card-padding"><span>地点：</span><span class="text-item1">{{ traceInfo.plantDTO.address }}</span></div>
         <div slot="content" class="card-padding"><span>时间：</span><span class="text-item1">{{ traceInfo.plantDTO.startDate | formatDate }}</span></div>
         <div slot="content" class="card-padding"><span>品种：</span><span class="text-item1">{{ traceInfo.plantDTO.goodsName }}</span></div>
+        <div slot="content" class="card-padding"><span>产地：</span><span class="text-item1">{{ origin }}</span></div>
       </card>
       <template v-for="(item, index) in traceInfo.plantItemDTOList" >
         <card :header="{title: '种植条目'+(index+1) }" :key="item.id">
@@ -53,6 +53,11 @@ export default {
     return {
       slideList: baseList,
       index: 0
+    }
+  },
+  computed: {
+    origin() {
+      return this.traceInfo ? this.traceInfo.tenant.name : '寿光蔬菜高科技示范园'
     }
   },
   mounted() {
