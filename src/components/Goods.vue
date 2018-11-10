@@ -59,11 +59,11 @@
         title="种植时间轴"
         is-link
         @click.native="showLineCell = !showLineCell"/>
-      <flow v-if="showLineCell" slot="content" orientation="vertical" style="height:200px;" title="流程">
-        <flow-state state="" title="" is-done/>
+      <flow v-if="showLineCell" slot="content" orientation="vertical" style="height:200px;margin-right:200px" title="流程">
+        <flow-state :title="traceInfo.plantDTO.farmerName" state="" is-done/>
         <template v-for="(item, index) in traceInfo.plantItemDTOList" >
-          <flow-line :tip="item.actionDate | formatDate" :key="2*index" tip-direction="left"/>
-          <flow-state :state="index+1" :span="50" :key="2*index+1" :title="item.actionName + (item.actionContent ? ':' + item.actionContent : '') " is-done/>
+          <flow-line :key="2*index" is-done tip-direction="left"/>
+          <flow-state :state="index+1" :span="50" :key="2*index+1" :title="getItemInfo(item)" is-done/>
         </template>
       </flow>
       <!--<template v-for="(item, index) in traceInfo.plantItemDTOList" >-->
@@ -148,34 +148,38 @@ export default {
   methods: {
     onIndexChange(e) {
       console.log('goods swiper:', e)
+    },
+    getItemInfo(item) {
+      return this.$options.filters.formatDate(item.actionDate) + ',' +
+      item.actionName + (item.actionContent ? ':' + item.actionContent : '')
     }
   }
 }
 </script>
 
 <style scoped lang="less">
-  @import '~vux/src/styles/1px.less';
+  /*@import '~vux/src/styles/1px.less';*/
 
-  .text-item {
-    text-align: right;
-  }
-  .card-demo-flex {
-    display: flex;
-  }
-  .card-demo-content01 {
-    padding: 10px 0;
-  }
-  .card-padding {
-    padding: 15px;
-  }
-  .card-demo-flex > div {
-    flex: 1;
-    text-align: center;
-    font-size: 12px;
-  }
-  .card-demo-flex span {
-    color: #f74c31;
-  }
+  /*.text-item {*/
+    /*text-align: right;*/
+  /*}*/
+  /*.card-demo-flex {*/
+    /*display: flex;*/
+  /*}*/
+  /*.card-demo-content01 {*/
+    /*padding: 10px 0;*/
+  /*}*/
+  /*.card-padding {*/
+    /*padding: 15px;*/
+  /*}*/
+  /*.card-demo-flex > div {*/
+    /*flex: 1;*/
+    /*text-align: center;*/
+    /*font-size: 12px;*/
+  /*}*/
+  /*.card-demo-flex span {*/
+    /*color: #f74c31;*/
+  /*}*/
   th {
     font-size:14px;
     color: gray;
