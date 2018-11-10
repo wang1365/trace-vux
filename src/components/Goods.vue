@@ -2,41 +2,70 @@
   <div>
     <swiper :list="slideList" v-model="index" @on-index-change="onIndexChange"/>
     <div v-if="traceInfo">
-      <card v-if="traceInfo.plantDTO" :header="{title: '您所购买产品的溯源信息' }">
-        <div slot="content" class="card-padding"><span>姓名：</span><span class="text-item1">{{ traceInfo.plantDTO.farmerName }}</span></div>
-        <div slot="content" class="card-padding"><span>地点：</span><span class="text-item1">{{ traceInfo.plantDTO.address }}</span></div>
-        <div slot="content" class="card-padding"><span>时间：</span><span class="text-item1">{{ traceInfo.plantDTO.startDate | formatDate }}</span></div>
-        <div slot="content" class="card-padding"><span>品种：</span><span class="text-item1">{{ traceInfo.plantDTO.goodsName }}</span></div>
-        <div slot="content" class="card-padding"><span>产地：</span><span class="text-item1">{{ origin }}</span></div>
-      </card>
+      <!--<card v-if="traceInfo.plantDTO" :header="{title: '您所购买产品的溯源信息' }">-->
+      <!--<div slot="content" class="card-padding"><span>姓名：</span><span class="text-item1">{{ traceInfo.plantDTO.farmerName }}</span></div>-->
+      <!--<div slot="content" class="card-padding"><span>地点：</span><span class="text-item1">{{ traceInfo.plantDTO.address }}</span></div>-->
+      <!--<div slot="content" class="card-padding"><span>时间：</span><span class="text-item1">{{ traceInfo.plantDTO.startDate | formatDate }}</span></div>-->
+      <!--<div slot="content" class="card-padding"><span>品种：</span><span class="text-item1">{{ traceInfo.plantDTO.goodsName }}</span></div>-->
+      <!--<div slot="content" class="card-padding"><span>产地：</span><span class="text-item1">{{ origin }}</span></div>-->
+      <!--</card>-->
 
-      <card :header="{title: '产品种植流程' }">
-        <x-table slot="content" :cell-bordered="false" style="margin:0 10px 0 10px;background-color:#fff;">
-          <thead>
-            <tr>
-              <th style="width: 10%">No</th>
-              <th style="width: 30%">日期</th>
-              <th style="width: 70%;text-align: left">种植流程</th>
-            </tr>
-          </thead>
-          <tbody v-for="(item, index) in traceInfo.plantItemDTOList" :key="index">
-            <tr>
-              <td>{{ index + 1 }}</td>
-              <td>{{ item.actionDate | formatDate }}</td>
-              <td style="color:green;text-align: left">{{ item.actionName + (item.actionContent ? ':' + item.actionContent : '') }}</td>
-            </tr>
-          </tbody>
-        </x-table>
-      </card>
-      <card :header="{title: '产品种植时间轴' }">
-        <flow slot="content" orientation="vertical" style="height:200px;" title="流程">
-          <flow-state state="" title="" is-done/>
-          <template v-for="(item, index) in traceInfo.plantItemDTOList" >
-            <flow-line :tip="item.actionDate | formatDate" :key="index" tip-direction="left"/>
-            <flow-state :state="index+1" :span="50" :key="index" :title="item.actionName + (item.actionContent ? ':' + item.actionContent : '') " is-done/>
-          </template>
-        </flow>
-      </card>
+      <cell
+        :border-intent="false"
+        :arrow-direction="showOrderCell ? 'up' : 'down'"
+        title="采购信息"
+        is-link
+        @click.native="showOrderCell = !showOrderCell"/>
+      <template v-if="showOrderCell">
+        <cell-form-preview :border-intent="false" :list="orderData"/>
+      </template>
+
+      <cell
+        :border-intent="false"
+        :arrow-direction="showPlantCell ? 'up' : 'down'"
+        title="种植信息"
+        is-link
+        @click.native="showPlantCell = !showPlantCell"/>
+      <template v-if="showPlantCell">
+        <cell-form-preview :border-intent="false" :list="plantData"/>
+      </template>
+
+      <cell
+        :border-intent="false"
+        :arrow-direction="showTableCell ? 'up' : 'down'"
+        title="种植流程"
+        is-link
+        @click.native="showTableCell = !showTableCell"/>
+      <x-table v-if="showTableCell" slot="content" :cell-bordered="false" style="margin:0 10px 0 10px;background-color:#fff;">
+        <thead>
+          <tr>
+            <th style="width: 10%">No</th>
+            <th style="width: 30%">日期</th>
+            <th style="width: 70%;text-align: left">种植流程</th>
+          </tr>
+        </thead>
+        <tbody v-for="(item, index) in traceInfo.plantItemDTOList" :key="index">
+          <tr>
+            <td style="font-size:14px">{{ index + 1 }}</td>
+            <td>{{ item.actionDate | formatDate }}</td>
+            <td style="color:green;text-align: left">{{ item.actionName + (item.actionContent ? ':' + item.actionContent : '') }}</td>
+          </tr>
+        </tbody>
+      </x-table>
+
+      <cell
+        :border-intent="false"
+        :arrow-direction="showLineCell ? 'up' : 'down'"
+        title="种植时间轴"
+        is-link
+        @click.native="showLineCell = !showLineCell"/>
+      <flow v-if="showLineCell" slot="content" orientation="vertical" style="height:200px;" title="流程">
+        <flow-state state="" title="" is-done/>
+        <template v-for="(item, index) in traceInfo.plantItemDTOList" >
+          <flow-line :tip="item.actionDate | formatDate" :key="2*index" tip-direction="left"/>
+          <flow-state :state="index+1" :span="50" :key="2*index+1" :title="item.actionName + (item.actionContent ? ':' + item.actionContent : '') " is-done/>
+        </template>
+      </flow>
       <!--<template v-for="(item, index) in traceInfo.plantItemDTOList" >-->
       <!--<card :header="{title: '种植条目'+(index+1) }" :key="item.id">-->
       <!--<div slot="content" class="card-padding"><span>姓名：</span><span class="text-item">{{ item.farmerName }}</span></div>-->
@@ -54,7 +83,7 @@
 </template>
 
 <script>
-import { Swiper, Divider, Card, XTable, Flow, FlowState, FlowLine } from 'vux'
+import { Swiper, Divider, Card, XTable, Flow, FlowState, FlowLine, Cell, CellFormPreview } from 'vux'
 const baseList = [{
   url: 'javascript:',
   img: 'http://img0.imgtn.bdimg.com/it/u=1432350417,449077377&fm=26&gp=0.jpg'
@@ -70,7 +99,7 @@ const baseList = [{
 export default {
   name: 'Goods',
   components: {
-    Swiper, Divider, Card, XTable, Flow, FlowState, FlowLine
+    Swiper, Divider, Card, XTable, Flow, FlowState, FlowLine, Cell, CellFormPreview
   },
   props: {
     traceInfo: {
@@ -81,7 +110,13 @@ export default {
   data() {
     return {
       slideList: baseList,
-      index: 0
+      index: 0,
+      showOrderCell: true,
+      showPlantCell: true,
+      showTableCell: true,
+      showLineCell: true,
+      orderData: [],
+      plantData: []
     }
   },
   computed: {
@@ -89,8 +124,26 @@ export default {
       return this.traceInfo ? this.traceInfo.tenant.name : '寿光蔬菜高科技示范园'
     }
   },
+  watch: {
+    traceInfo() {
+      if (!this.traceInfo) {
+        return
+      }
+      const order = this.traceInfo.orderDTO
+      this.orderData.push({ label: '采购人', value: order.buyerName })
+      this.orderData.push({ label: '农户', value: order.sellerName })
+      this.orderData.push({ label: '采购时间', value: this.$options.filters.formatDate(order.orderTime) })
+      this.orderData.push({ label: '采购地点', value: order.address })
+      this.orderData.push({ label: '品种', value: order.goodsName })
+
+      const plant = this.traceInfo.plantDTO
+      this.plantData.push({ label: '农户', value: plant.farmerName })
+      this.plantData.push({ label: '种植时间', value: this.$options.filters.formatDate(plant.startDate) })
+      this.plantData.push({ label: '种植地点', value: plant.address })
+      this.plantData.push({ label: '品种', value: plant.goodsName })
+    }
+  },
   mounted() {
-    console.log('check trace info:', this.traceInfo)
   },
   methods: {
     onIndexChange(e) {
@@ -124,6 +177,10 @@ export default {
     color: #f74c31;
   }
   th {
+    font-size:14px;
+    color: gray;
+  }
+  td {
     font-size:14px;
     color: gray;
   }
