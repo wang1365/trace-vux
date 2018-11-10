@@ -8,6 +8,14 @@
     <video style="height: 100%;width: 100%" controls poster="http://img0.imgtn.bdimg.com/it/u=2264166786,3696145444&fm=26&gp=0.jpg">
       <source src="http://ips.ifeng.com/video19.ifeng.com/video09/2018/09/23/v47391907-102-009-064951.mp4">
     </video>
+    <!--<template v-if="traceInfo">-->
+    <!--<template v-for="(item, index) in traceInfo.newsList" >-->
+    <!--<divider>{{ '视频' +(index+1) }}</divider>-->
+    <!--<video style="height: 100%;width: 100%" controls poster="http://img0.imgtn.bdimg.com/it/u=2264166786,3696145444&fm=26&gp=0.jpg">-->
+    <!--<source :src="item.url">-->
+    <!--</video>-->
+    <!--</template>-->
+    <!--</template>-->
     <br>
     <divider v-if="traceInfo">订单ID: {{ traceInfo.orderId }}</divider>
     <div v-if="traceInfo">
