@@ -1,6 +1,8 @@
 <template>
   <div>
     <swiper :list="slideList" v-model="index" @on-index-change="onIndexChange"/>
+    <div v-if="!traceInfo" class="not-found1">查询不到您所购买商品的溯源信息</div>
+    <div v-if="!traceInfo" class="not-found2">请确认您的商品是从官方渠道购买~</div>
     <div v-if="traceInfo">
       <!--<card v-if="traceInfo.plantDTO" :header="{title: '您所购买产品的溯源信息' }">-->
       <!--<div slot="content" class="card-padding"><span>姓名：</span><span class="text-item1">{{ traceInfo.plantDTO.farmerName }}</span></div>-->
@@ -191,5 +193,16 @@ export default {
   td {
     font-size:14px;
     color: gray;
+  }
+  .not-found1 {
+    margin: 20px 0 auto;
+    text-align: center;
+    font-size: 20px;
+    color: red;
+  }
+  .not-found2 {
+    margin: 20px 0 auto;
+    text-align: center;
+    font-size: 18px;
   }
 </style>
