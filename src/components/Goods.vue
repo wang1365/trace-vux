@@ -89,7 +89,7 @@ const baseList = [{
   img: 'http://img0.imgtn.bdimg.com/it/u=1432350417,449077377&fm=26&gp=0.jpg'
 }, {
   url: 'javascript:',
-  img: 'http://img0.imgtn.bdimg.com/it/u=2913072137,2479013543&fm=26&gp=0.jpg'
+  img: 'http://img0.imgtn.bdimg.com/it/u=3089978324,4168163468&fm=26&gp=0.jpg'
 }, {
   url: 'javascript:',
   img: 'http://img2.imgtn.bdimg.com/it/u=869723110,4275175310&fm=26&gp=0.jpg', // 404
@@ -144,9 +144,9 @@ export default {
 
       const goods = this.traceInfo.goods
       this.slideList = []
-      this.slideList.push({ url: 'javascript:', img: goods.url1 })
-      this.slideList.push({ url: 'javascript:', img: goods.url2 })
-      this.slideList.push({ url: 'javascript:', img: goods.url3 })
+      this.slideList.push({ url: 'javascript:', img: goods.url1 ? goods.url1 : baseList[0].img })
+      this.slideList.push({ url: 'javascript:', img: goods.url2 ? goods.url2 : baseList[1].img })
+      this.slideList.push({ url: 'javascript:', img: goods.url3 ? goods.url3 : baseList[2].img })
     }
   },
   mounted() {
