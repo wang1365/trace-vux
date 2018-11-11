@@ -14,7 +14,7 @@
         :border-intent="false"
         :arrow-direction="showOrderCell ? 'up' : 'down'"
         title="采购信息"
-        is-link
+        inline-desc=""
         @click.native="showOrderCell = !showOrderCell"/>
       <template v-if="showOrderCell">
         <cell-form-preview :border-intent="false" :list="orderData"/>
@@ -24,7 +24,6 @@
         :border-intent="false"
         :arrow-direction="showPlantCell ? 'up' : 'down'"
         title="种植信息"
-        is-link
         @click.native="showPlantCell = !showPlantCell"/>
       <template v-if="showPlantCell">
         <cell-form-preview :border-intent="false" :list="plantData"/>
@@ -34,21 +33,20 @@
         :border-intent="false"
         :arrow-direction="showTableCell ? 'up' : 'down'"
         title="种植流程"
-        is-link
         @click.native="showTableCell = !showTableCell"/>
-      <x-table v-if="showTableCell" slot="content" :cell-bordered="false" style="margin:0 10px 0 10px;background-color:#fff;">
+      <x-table v-if="showTableCell" slot="content" :cell-bordered="false" style="width:100%;margin:0 20px 0 0px;background-color:#fff;">
         <thead>
           <tr>
             <th style="width: 10%">No</th>
             <th style="width: 30%">日期</th>
-            <th style="width: 70%;text-align: left">种植流程</th>
+            <th style="width: 70%;padding-right:10px;text-align: right">种植流程</th>
           </tr>
         </thead>
         <tbody v-for="(item, index) in traceInfo.plantItemDTOList" :key="index">
           <tr>
             <td style="font-size:14px">{{ index + 1 }}</td>
             <td>{{ item.actionDate | formatDate }}</td>
-            <td style="color:green;text-align: left">{{ item.actionName + (item.actionContent ? ':' + item.actionContent : '') }}</td>
+            <td style="color:green;padding-right:10px;text-align: right">{{ item.actionName + (item.actionContent ? ':' + item.actionContent : '') }}</td>
           </tr>
         </tbody>
       </x-table>
@@ -141,6 +139,12 @@ export default {
       this.plantData.push({ label: '种植时间', value: this.$options.filters.formatDate(plant.startDate) })
       this.plantData.push({ label: '种植地点', value: plant.address })
       this.plantData.push({ label: '品种', value: plant.goodsName })
+
+      const goods = this.traceInfo.goods
+      this.slideList = []
+      this.slideList.push({ url: 'javascript:', img: goods.url1 })
+      this.slideList.push({ url: 'javascript:', img: goods.url2 })
+      this.slideList.push({ url: 'javascript:', img: goods.url3 })
     }
   },
   mounted() {

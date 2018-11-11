@@ -18,7 +18,7 @@
     <tabbar-item>
       <img slot="icon" src="../assets/image/ic_nav_discover_normal.png">
       <img slot="icon-active" src="../assets/image/ic_nav_discover_actived.png">
-      <span slot="label">新闻</span>
+      <span slot="label">种植</span>
     </tabbar-item>
     <tabbar-item>
       <img slot="icon" src="../assets/image/ic_nav_my_normal.png">
