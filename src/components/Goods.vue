@@ -59,21 +59,38 @@
         </tbody>
       </x-table>
 
+      <!--<cell-->
+      <!--:border-intent="false"-->
+      <!--:arrow-direction="showLineCell ? 'up' : 'down'"-->
+      <!--title="种植时间轴"-->
+      <!--is-link-->
+      <!--@click.native="showLineCell = !showLineCell">-->
+      <!--<img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/image/goods/流程.png">-->
+      <!--</cell>-->
+      <!--<flow v-if="showLineCell" slot="content" orientation="vertical" style="height:200px;margin-right:200px" title="流程">-->
+      <!--<flow-state :title="traceInfo.plantDTO.farmerName" state="" is-done/>-->
+      <!--<template v-for="(item, index) in traceInfo.plantItemDTOList" >-->
+      <!--<flow-line :key="2*index" is-done tip-direction="left"/>-->
+      <!--<flow-state :state="index+1" :span="50" :key="2*index+1" :title="getItemInfo(item)" is-done/>-->
+      <!--</template>-->
+      <!--</flow>-->
+
       <cell
         :border-intent="false"
         :arrow-direction="showLineCell ? 'up' : 'down'"
-        title="种植时间轴"
+        title="详情"
         is-link
         @click.native="showLineCell = !showLineCell">
-        <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/image/goods/icon_流程配置.png">
+        <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/image/goods/流程.png">
       </cell>
-      <flow v-if="showLineCell" slot="content" orientation="vertical" style="height:200px;margin-right:200px" title="流程">
-        <flow-state :title="traceInfo.plantDTO.farmerName" state="" is-done/>
-        <template v-for="(item, index) in traceInfo.plantItemDTOList" >
-          <flow-line :key="2*index" is-done tip-direction="left"/>
-          <flow-state :state="index+1" :span="50" :key="2*index+1" :title="getItemInfo(item)" is-done/>
-        </template>
-      </flow>
+      <div class="timeline-demo">
+        <timeline v-if="showLineCell">
+          <timeline-item v-for="(item, index) in traceInfo.plantItemDTOList">
+            <p>{{ $options.filters.formatDate(item.actionDate) }}</p>
+            <h4>{{ (index+1) + '.' + item.actionName + (item.actionContent ? '：' + item.actionContent : '') }}</h4>
+          </timeline-item>
+        </timeline>
+      </div>
       <!--<template v-for="(item, index) in traceInfo.plantItemDTOList" >-->
       <!--<card :header="{title: '种植条目'+(index+1) }" :key="item.id">-->
       <!--<div slot="content" class="card-padding"><span>姓名：</span><span class="text-item">{{ item.farmerName }}</span></div>-->
@@ -91,7 +108,7 @@
 </template>
 
 <script>
-import { Swiper, Divider, Card, XTable, Flow, FlowState, FlowLine, Cell, CellFormPreview } from 'vux'
+import { Swiper, Divider, Card, XTable, Flow, FlowState, FlowLine, Cell, CellFormPreview, Timeline, TimelineItem } from 'vux'
 const baseList = [{
   url: 'javascript:',
   img: 'http://img0.imgtn.bdimg.com/it/u=1432350417,449077377&fm=26&gp=0.jpg'
@@ -107,7 +124,7 @@ const baseList = [{
 export default {
   name: 'Goods',
   components: {
-    Swiper, Divider, Card, XTable, Flow, FlowState, FlowLine, Cell, CellFormPreview
+    Swiper, Divider, Card, XTable, Flow, FlowState, FlowLine, Cell, CellFormPreview, Timeline, TimelineItem
   },
   props: {
     traceInfo: {
@@ -212,5 +229,18 @@ export default {
     margin: 20px 0 auto;
     text-align: center;
     font-size: 18px;
+  }
+  .timeline-demo {
+    p {
+      color: #888;
+      font-size: 0.8rem;
+    }
+    h4 {
+      color: #666;
+      font-weight: normal;
+    }
+    .recent {
+      color: rgb(4, 190, 2)
+    }
   }
 </style>
