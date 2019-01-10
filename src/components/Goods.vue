@@ -17,7 +17,9 @@
         :arrow-direction="showOrderCell ? 'up' : 'down'"
         title="采购信息"
         inline-desc=""
-        @click.native="showOrderCell = !showOrderCell"/>
+        @click.native="showOrderCell = !showOrderCell">
+        <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/image/goods/南瓜.png">
+      </cell>
       <template v-if="showOrderCell">
         <cell-form-preview :border-intent="false" :list="orderData"/>
       </template>
@@ -26,7 +28,9 @@
         :border-intent="false"
         :arrow-direction="showPlantCell ? 'up' : 'down'"
         title="种植信息"
-        @click.native="showPlantCell = !showPlantCell"/>
+        @click.native="showPlantCell = !showPlantCell">
+        <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/image/goods/S-农业.png">
+      </cell>
       <template v-if="showPlantCell">
         <cell-form-preview :border-intent="false" :list="plantData"/>
       </template>
@@ -35,7 +39,9 @@
         :border-intent="false"
         :arrow-direction="showTableCell ? 'up' : 'down'"
         title="种植流程"
-        @click.native="showTableCell = !showTableCell"/>
+        @click.native="showTableCell = !showTableCell">
+        <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/image/goods/生产流程.png">
+      </cell>
       <x-table v-if="showTableCell" slot="content" :cell-bordered="false" style="width:100%;margin:0 20px 0 0px;background-color:#fff;">
         <thead>
           <tr>
@@ -58,7 +64,9 @@
         :arrow-direction="showLineCell ? 'up' : 'down'"
         title="种植时间轴"
         is-link
-        @click.native="showLineCell = !showLineCell"/>
+        @click.native="showLineCell = !showLineCell">
+        <img slot="icon" width="20" style="display:block;margin-right:5px;" src="../assets/image/goods/icon_流程配置.png">
+      </cell>
       <flow v-if="showLineCell" slot="content" orientation="vertical" style="height:200px;margin-right:200px" title="流程">
         <flow-state :title="traceInfo.plantDTO.farmerName" state="" is-done/>
         <template v-for="(item, index) in traceInfo.plantItemDTOList" >
