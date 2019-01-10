@@ -67,16 +67,19 @@ export default {
   watch: {
     footerIndex(newIndex) {
       const id = this.$route.params.id
-      if (newIndex === 2) {
-        // this.showIdInput = true
-      } else {
-        const page = [{ name: 'goods', id }, { name: 'origin', id }, {}, { name: 'plant', id }, {
-          name: 'quality',
-          id
-        }][newIndex]
-        console.log('subPage is:', newIndex, page)
-        this.$router.push(page)
-      }
+      // if (newIndex === 2) {
+      //   // this.showIdInput = true
+      // } else {
+      const page = [
+        { name: 'goods', id },
+        { name: 'origin', id },
+        // {},
+        { name: 'plant', id },
+        { name: 'quality', id }
+      ][newIndex]
+      console.log('subPage is:', newIndex, page)
+      this.$router.push(page)
+      // }
     },
     '$route'(to, from) {
       this.updateTraceInfo()
