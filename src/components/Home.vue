@@ -1,6 +1,7 @@
 <template>
   <div>
-    <x-header :left-options="{showBack: false}">{{ title }}</x-header>
+    <!--<x-header :left-options="{showBack: false}">{{ title }}</x-header>-->
+    <x-header :left-options="{showBack: false}" style="background-color:#0A4502;">寿光蔬菜，品质生活</x-header>
     <!-- <app-header>{{ $data }}</app-header> -->
     <router-view :key="key" :trace-info="traceInfo"/>
     <app-footer :index.sync="footerIndex" @on-index-change="onFooterIndexChange" @show-query="onClickQuery"/>

@@ -10,11 +10,11 @@
       <img slot="icon-active" src="../assets/image/ic_nav_tweet_actived.png">
       <span slot="label">产地</span>
     </tabbar-item>
-    <tabbar-item @on-item-click="onClickQuery">
-      <img slot="icon" src="../assets/image/ic_nav_search_normal.png">
-      <img slot="icon-active" src="../assets/image/ic_nav_search_actived.png">
-      <span slot="label">查询</span>
-    </tabbar-item>
+    <!--<tabbar-item @on-item-click="onClickQuery">-->
+    <!--<img slot="icon" src="../assets/image/ic_nav_search_normal.png">-->
+    <!--<img slot="icon-active" src="../assets/image/ic_nav_search_actived.png">-->
+    <!--<span slot="label">查询</span>-->
+    <!--</tabbar-item>-->
     <tabbar-item>
       <img slot="icon" src="../assets/image/ic_nav_discover_normal.png">
       <img slot="icon-active" src="../assets/image/ic_nav_discover_actived.png">
